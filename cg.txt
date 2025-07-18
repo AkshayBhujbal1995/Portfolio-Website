@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akshay Bhujbal | AI Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      background-color: #0a0a0a;
+      font-family: 'Fira Code', monospace;
+      color: white;
+    }
+    h1, h2, h3 {
+      font-family: 'Rajdhani', sans-serif;
+    }
+    .text-gradient {
+      background: linear-gradient(to right, #00d2ff, #3a7bd5, #00ffaa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .glassmorphic {
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .btn-glow:hover {
+      box-shadow: 0 0 10px #00ffaa, 0 0 20px #00d2ff;
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden">
+  <nav class="fixed top-0 w-full glassmorphic z-50 px-6 py-4 flex justify-between items-center">
+    <div class="text-2xl text-gradient font-bold">AkshayDev</div>
+    <ul class="hidden md:flex gap-6">
+      <li><a href="#home" class="hover:text-accent">Home</a></li>
+      <li><a href="#about" class="hover:text-accent">About</a></li>
+      <li><a href="#skills" class="hover:text-accent">Skills</a></li>
+      <li><a href="#experience" class="hover:text-accent">Experience</a></li>
+      <li><a href="#projects" class="hover:text-accent">Projects</a></li>
+      <li><a href="#contact" class="hover:text-accent">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center">
+    <div class="text-lg">> Hello_World()</div>
+    <h1 class="text-4xl md:text-6xl font-bold mt-4">I'm Akshay Bhujbal</h1>
+    <p class="mt-2 text-xl">Data Analyst → AI Engineer in Progress</p>
+    <p class="mt-1 text-accent">const specialties = ["Python", "SQL", "LLMs", "Dashboards"]</p>
+    <div class="mt-6 flex gap-4">
+      <a href="#projects" class="btn-glow bg-accent text-black px-4 py-2 rounded">View Projects</a>
+      <a href="#contact" class="btn-glow border border-accent px-4 py-2 rounded">Contact Me</a>
+    </div>
+  </section>
+
+  <footer class="py-6 text-center text-sm text-gray-400">
+    © 2025 Akshay Bhujbal — All rights reserved.
+  </footer>
+</body>
+</html>
