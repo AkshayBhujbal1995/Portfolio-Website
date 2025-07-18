@@ -166,7 +166,20 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Projects injected by JS -->
             </div>
-        </section>
+     <!-- More Projects CTA -->
+<div class="max-w-3xl mx-auto mt-16">
+  <div class="glass-card p-6 glow-on-hover text-center">
+    <h3 class="font-display text-xl font-bold text-light">Want More Projects?</h3>
+    <p class="mt-2 text-dim">Explore additional experiments, open-source apps, and AI tools on my GitHub.</p>
+    <a href="https://github.com/AkshayBhujbal1995" target="_blank" class="btn btn-outline mt-4 inline-block">
+      🔗 View All Projects on GitHub
+    </a>
+  </div>
+</div>
+
+
+   
+</section>
 <!-- Education Section -->
 <section id="education" class="py-24">
   <h2 class="text-4xl font-display text-center mb-16">/ Academic Matrix</h2>
@@ -229,12 +242,50 @@
                 { role: 'Research Assistant', company: 'Northside Partnership', date: '2020–2021', desc: 'Excel dashboards, community data, visual reports.' },
             ];
             const projectsData = [
-                { img: 'IMG1.jpeg', title: 'Gemini Multimodal App', desc: 'Streamlit app using Gemini for text and image analysis.', code: 'https://github.com/AkshayBhujbal1995/6_Month_AI_Road_Map_2025/tree/main/Projects/Multi_Model_With_streamlit' },
-                { img: 'IMG2.jpeg', title: 'Text Generation with Gemini', desc: 'Generates text content based on user prompts via the Gemini model.', code: 'https://github.com/AkshayBhujbal1995/6_Month_AI_Road_Map_2025/tree/main/Projects/Text_Generation_with_AI' },
-                { img: 'IMG3.jpeg', title: 'EDA Powered by LLM', desc: 'An innovative tool using an LLM to automate Exploratory Data Analysis.', code: 'https://github.com/AkshayBhujbal1995/6_Month_AI_Road_Map_2025/tree/main/Projects/EDA_with_LLM' },
-                { img: 'IMG4.jpeg', title: 'House Price Prediction', desc: 'Web app comparing 13 ML models to predict real estate prices.', code: 'https://github.com/AkshayBhujbal1995/6_Month_AI_Road_Map_2025/tree/main/Projects/House_Price_Prediction_WebApp_using_13_models' },
-                { img: 'IMG5.jpeg', title: 'Amazon Prime Dashboard', desc: 'A Power BI dashboard analyzing the Amazon Prime Video dataset.', code: 'https://github.com/AkshayBhujbal1995/Amazon-Prime-Video-PowerBI-Dashboard' }
-            ];
+  // 🤖 AI & Generative AI
+  {
+   
+img: 'IMG1.jpeg',
+    title: 'Multimodal Gemini App',
+    desc: 'Streamlit app using Gemini for text and image analysis.',
+    code: 'https://github.com/AkshayBhujbal1995/6_Month_AI_Road_Map_2025/tree/main/Projects/Multi_Model_With_streamlit'
+  },
+  {
+    img: 'IMG2.jpeg',
+    title: 'Text Generation with Gemini',
+    desc: 'Generates content based on prompts using Google GenAI.',
+    code: 'https://github.com/AkshayBhujbal1995/6_Month_AI_Road_Map_2025/tree/main/Projects/Text_Generation_with_AI'
+  },
+
+  // 🧠 Machine Learning
+  {
+    img: 'IMG4.jpeg',
+    title: 'House Price Prediction (13 Models)',
+    desc: 'Web app comparing 13 ML models for real estate price prediction.',
+    code: 'https://github.com/AkshayBhujbal1995/6_Month_AI_Road_Map_2025/tree/main/Projects/House_Price_Prediction_WebApp_using_13_models'
+  },
+  {
+    img: 'IMAGE11.jpeg',
+    title: 'IPO Gain Predictor',
+    desc: 'ML model using TensorFlow to predict IPO listing gains.',
+    code: 'https://github.com/AkshayBhujbal1995/Predicting-Listing-Gains-in-the-Indian-IPO-Market-Using-TensorFlow'
+  },
+
+  // 📊 Data Analytics & BI
+  {
+    img: 'IMG5.jpeg',
+    title: 'Amazon Prime Video Dashboard',
+    desc: 'Power BI dashboard analyzing Amazon Prime Video content trends.',
+    code: 'https://github.com/AkshayBhujbal1995/Amazon-Prime-Video-PowerBI-Dashboard'
+  },
+  {
+    img: 'IMAGE2.jpeg',
+    title: 'Google Job Trends Analysis',
+    desc: 'Python-based analysis of Google search trends in job market.',
+    code: 'https://github.com/AkshayBhujbal1995/Google-Search-Analysis-with-Python'
+  }
+];
+
 
             // --- RENDER DYNAMIC CONTENT ---
             const skillsContainer = document.querySelector('#skills .grid');
