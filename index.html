@@ -342,7 +342,20 @@ img: 'IMG1.jpeg',
             });
         });
     </script>
- 
+ <!-- Visitor Counter at Bottom -->
+<div style="margin-top: 20px; text-align: center; font-family: 'Fira Code', monospace; color: #00ffaa; font-size: 14px;">
+  👁️ Visitors: <span id="counter">Loading...</span>
+</div>
+
+<script>
+  const baseCount = 2065;
+  fetch('https://api.countapi.xyz/update/akshaybhujbal/portfolio-site/?amount=1')
+    .then(res => res.json())
+    .then(res => {
+      document.getElementById("counter").innerText = baseCount + res.value;
+    });
+</script>
+
 
 </body>
 </html>
