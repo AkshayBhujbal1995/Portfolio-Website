@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akshay Bhujbal | AI Engineer — Agentic AI &amp; Real-Time Voice Systems</title>
+<meta name="description" content="Akshay Bhujbal — AI Engineer building production agentic AI systems, real-time voice automation, and LLM-powered workflows.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%E2%9C%A8</text></svg>">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#06070b;
+  --card:rgba(255,255,255,0.035);
+  --border:rgba(255,255,255,0.09);
+  --text:#eef1f7;
+  --dim:#98a2b3;
+  --primary:#6366f1;
+  --accent:#22d3ee;
+  --violet:#a855f7;
+}
+*{box-sizing:border-box;}
+body{background:var(--bg); color:var(--dim); font-family:'Inter',sans-serif; overflow-x:hidden;}
+h1,h2,h3,h4,.font-display{font-family:'Space Grotesk',sans-serif; color:var(--text);}
+.mono{font-family:'JetBrains Mono',monospace;}
+.gradient-text{background-image:linear-gradient(90deg,var(--primary),var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+
+.blob{position:fixed; border-radius:9999px; filter:blur(90px); z-index:-1; opacity:0.28; pointer-events:none;}
+.blob1{width:520px; height:520px; background:var(--primary); top:-160px; left:-160px; animation:drift1 22s ease-in-out infinite alternate;}
+.blob2{width:460px; height:460px; background:var(--accent); bottom:-140px; right:-140px; animation:drift2 26s ease-in-out infinite alternate;}
+.blob3{width:380px; height:380px; background:var(--violet); top:35%; left:55%; animation:drift3 19s ease-in-out infinite alternate;}
+@keyframes drift1{to{transform:translate(60px,80px) scale(1.15);}}
+@keyframes drift2{to{transform:translate(-50px,-60px) scale(1.1);}}
+@keyframes drift3{to{transform:translate(-70px,50px) scale(1.2);}}
+
+.glass{background:var(--card); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border:1px solid var(--border); transition:all .35s ease;}
+.glass-hover:hover{transform:translateY(-6px); border-color:rgba(99,102,241,0.5); box-shadow:0 12px 40px -12px rgba(99,102,241,0.35);}
+
+.btn{padding:.85rem 1.75rem; border-radius:10px; font-weight:600; font-family:'Space Grotesk',sans-serif; letter-spacing:.02em; transition:all .25s ease; display:inline-block;}
+.btn-primary{background-image:linear-gradient(90deg,var(--primary),var(--accent)); color:#04050a;}
+.btn-primary:hover{transform:scale(1.04); box-shadow:0 10px 30px -8px rgba(99,102,241,.6);}
+.btn-outline{border:1.5px solid var(--border); color:var(--text);}
+.btn-outline:hover{border-color:var(--accent); color:var(--accent);}
+
+.nav-link{position:relative; color:var(--dim); transition:color .2s ease;}
+.nav-link:hover{color:var(--text);}
+#mobile-menu{transition:max-height .35s ease, opacity .25s ease; background:#0b0d14; backdrop-filter:blur(18px);}
+
+.timeline-item{position:relative; padding-left:2rem; border-left:1.5px solid var(--border);}
+.timeline-item:last-child{border-left-color:transparent;}
+.timeline-dot{position:absolute; left:-6.5px; top:.4rem; width:12px; height:12px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--accent)); box-shadow:0 0 12px rgba(99,102,241,.7);}
+
+.badge{font-family:'JetBrains Mono',monospace; font-size:.65rem; letter-spacing:.08em; padding:.2rem .6rem; border-radius:999px; text-transform:uppercase;}
+.badge-production{background:rgba(34,211,238,0.12); color:var(--accent); border:1px solid rgba(34,211,238,0.3);}
+.badge-learning{background:rgba(148,163,184,0.1); color:var(--dim); border:1px solid var(--border);}
+
+.tab-btn{border:1px solid var(--border); color:var(--dim); transition:all .25s ease;}
+.tab-btn.active{background-image:linear-gradient(90deg,var(--primary),var(--accent)); color:#04050a; border-color:transparent;}
+
+.chat-line{opacity:0; transform:translateY(8px); animation:chatIn .4s ease forwards;}
+@keyframes chatIn{to{opacity:1; transform:translateY(0);}}
+.bubble-agent{background:linear-gradient(135deg,rgba(99,102,241,.18),rgba(34,211,238,.14)); border:1px solid rgba(99,102,241,.3); align-self:flex-end;}
+.bubble-caller{background:rgba(255,255,255,.05); border:1px solid var(--border); align-self:flex-start;}
+.bubble-system{align-self:center; text-align:center; font-family:'JetBrains Mono',monospace; font-size:.75rem; color:var(--accent); background:rgba(34,211,238,.08); border:1px solid rgba(34,211,238,.25);}
+
+.contact-input{background:rgba(255,255,255,.03); border:1px solid var(--border); color:var(--text); transition:all .25s ease;}
+.contact-input:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(34,211,238,.15);}
+
+::selection{background:rgba(99,102,241,.4);}
+</style>
+</head>
+<body class="antialiased">
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
+<div class="blob blob3"></div>
+
+<header id="navbar" class="fixed top-0 left-0 w-full z-50 border-b border-white/5 bg-[#06070b]/70 backdrop-blur-md">
+  <div class="container mx-auto px-6 py-4 flex justify-between items-center relative">
+    <a href="#home" class="font-display text-xl font-bold text-white">Akshay<span class="gradient-text">.</span></a>
+    <nav class="hidden md:flex items-center gap-8 text-sm">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#experience" class="nav-link">Experience</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#ai-demo" class="nav-link">AI in Action</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+    <a href="#contact" class="hidden md:inline-block btn btn-primary !py-2 !px-5 text-sm">Hire Me</a>
+    <button id="menu-toggle" class="md:hidden text-white p-2" aria-label="Toggle menu">
+      <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full glass overflow-hidden max-h-0 opacity-0">
+      <div class="flex flex-col px-6 py-4 gap-4 text-sm">
+        <a href="#about" class="nav-link mobile-link">About</a>
+        <a href="#skills" class="nav-link mobile-link">Skills</a>
+        <a href="#experience" class="nav-link mobile-link">Experience</a>
+        <a href="#projects" class="nav-link mobile-link">Projects</a>
+        <a href="#ai-demo" class="nav-link mobile-link">AI in Action</a>
+        <a href="#contact" class="nav-link mobile-link">Contact</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container mx-auto px-6">
+
+  <section id="home" class="min-h-screen flex items-center pt-24">
+    <div class="max-w-3xl reveal">
+      <p class="mono text-accent text-xs sm:text-sm tracking-[0.2em] uppercase mb-5">// Open to AI Engineering roles</p>
+      <h1 class="text-5xl sm:text-7xl font-bold text-white leading-tight">Akshay Bhujbal</h1>
+      <h2 class="text-2xl sm:text-4xl font-semibold mt-3 h-12"><span id="role-rotator" class="gradient-text">AI Engineer</span></h2>
+      <p class="mt-6 text-lg text-slate-300 max-w-2xl">Building production AI systems — real-time voice agents, agentic automation platforms, and LLM-powered workflows that run real businesses, not demos.</p>
+      <div class="mt-9 flex flex-wrap gap-4">
+        <a href="#ai-demo" class="btn btn-primary">See AI in Action</a>
+        <a href="#projects" class="btn btn-outline">View Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="py-24 reveal">
+    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-12">About</h2>
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+      <div class="lg:col-span-2 flex justify-center">
+        <div class="w-64 h-64 rounded-2xl glass p-2 relative">
+          <img src="pro.png" alt="Akshay Bhujbal" class="w-full h-full object-cover rounded-xl">
+        </div>
+      </div>
+      <div class="lg:col-span-3 space-y-4 text-base leading-relaxed">
+        <p>Building <span class="text-white font-medium">production AI systems</span> — real-time voice agents, agentic automation platforms, and LLM-powered workflows — that run real businesses, not demos.</p>
+        <p>Engineering <span class="text-white font-medium">real-time voice pipelines (LiveKit/WebRTC), multi-agent orchestration (MCP, LangChain), and RAG architectures</span> for production scale.</p>
+        <p>Skilled in <span class="text-white font-medium">Python, FastAPI, PostgreSQL, Next.js/React, &amp; Docker</span> for building and shipping full-stack AI products.</p>
+        <p>Currently deepening <span class="text-white font-medium">DevOps</span> — CI/CD and infrastructure automation — to take AI systems from prototype to reliably operated production services.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="py-24 reveal">
+    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-12">Technical Toolkit</h2>
+    <div id="skills-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+  </section>
+
+  <section id="experience" class="py-24 reveal">
+    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-12">Experience</h2>
+    <div id="experience-timeline" class="max-w-3xl mx-auto space-y-10"></div>
+  </section>
+
+  <section id="projects" class="py-24 reveal">
+    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Projects</h2>
+    <p class="mb-12 max-w-2xl">Production systems currently in active use, plus personal projects from my AI/ML learning journey.</p>
+    <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </section>
+
+  <section id="ai-demo" class="py-24 reveal">
+    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">AI in Action</h2>
+    <p class="mb-10 max-w-2xl">A scripted, illustrative walkthrough of how each production system behaves — click a tab, then simulate it.</p>
+
+    <div id="tab-buttons" class="flex flex-wrap gap-3 mb-8"></div>
+
+    <div class="glass rounded-2xl p-6 sm:p-10 max-w-3xl">
+      <div class="flex items-center justify-between mb-6">
+        <h3 id="demo-title" class="font-display text-xl font-bold text-white"></h3>
+        <span class="badge badge-production mono">Simulated walkthrough</span>
+      </div>
+      <button id="simulate-btn" class="btn btn-primary !py-2.5 !px-6 text-sm mb-8">▶ Simulate</button>
+      <div id="demo-panel" class="flex flex-col gap-3 min-h-[220px]"></div>
+    </div>
+  </section>
+
+  <section id="education" class="py-24 reveal">
+    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-12">Education</h2>
+    <div class="max-w-3xl mx-auto space-y-6">
+      <div class="glass glass-hover rounded-2xl p-6">
+        <h3 class="text-lg font-bold text-white">Postgraduate Diploma in <span class="gradient-text">Data Analytics</span></h3>
+        <p class="mono text-accent text-sm mt-1">National College of Ireland · 2020</p>
+        <p class="mt-2 text-sm">Specialized in Python, SQL, Data Visualization, and Machine Learning with hands-on BI tools.</p>
+      </div>
+      <div class="glass glass-hover rounded-2xl p-6">
+        <h3 class="text-lg font-bold text-white">Bachelor of Science in <span class="gradient-text">Computer Science</span></h3>
+        <p class="mono text-accent text-sm mt-1">Savitribai Phule Pune University · 2016</p>
+        <p class="mt-2 text-sm">Core foundation in software development, data structures, and computer systems.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="text-center py-12">
+    <a href="https://drive.google.com/file/d/1Y0MS6B23S8pLsOj-ec7L8bnRqGtHFF_N/view?usp=drive_link" download class="btn btn-outline">Download Resume</a>
+  </div>
+
+  <section id="contact" class="py-24 reveal">
+    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-12 text-center">Let's Connect</h2>
+    <div class="max-w-xl mx-auto glass rounded-2xl p-8">
+      <form action="https://formsubmit.co/akshaybhujbal.ai@gmail.com" method="POST" class="space-y-5">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://akshaybhujbal1995.github.io/Portfolio-Website/thankyou.html">
+        <input type="text" name="name" placeholder="Your Name" class="contact-input rounded-lg p-3 w-full" required>
+        <input type="email" name="email" placeholder="Your Email" class="contact-input rounded-lg p-3 w-full" required>
+        <input type="text" name="subject" placeholder="Subject" class="contact-input rounded-lg p-3 w-full" required>
+        <textarea name="message" rows="5" placeholder="Message" class="contact-input rounded-lg p-3 w-full" required></textarea>
+        <button type="submit" class="btn btn-primary w-full">Send Message</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="border-t border-white/5 mt-16">
+  <div class="container mx-auto px-6 py-10 text-center">
+    <a href="#home" class="font-display text-xl font-bold text-white">Akshay Bhujbal</a>
+    <div class="flex justify-center gap-6 mt-4 text-xl">
+      <a href="https://github.com/AkshayBhujbal1995" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">GitHub</a>
+      <a href="https://www.linkedin.com/in/akshay-1995-bhujbal" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">LinkedIn</a>
+    </div>
+    <p class="mt-6 text-xs mono">© 2026 Akshay Bhujbal</p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ---------- DATA ----------
+  const skillsData = [
+    { icon: '🎙️', name: 'LiveKit', desc: 'Real-Time Voice AI (WebRTC)' },
+    { icon: '🧠', name: 'Agentic AI', desc: 'Multi-Agent Orchestration' },
+    { icon: '🔗', name: 'MCP', desc: 'Tool-Calling & Integration' },
+    { icon: '🤖', name: 'LangChain', desc: 'AI Orchestration Framework' },
+    { icon: '🛰️', name: 'RAG Systems', desc: 'Retrieval-Augmented Generation' },
+    { icon: '⚡', name: 'Generative AI', desc: 'LLMs & Prompt Engineering' },
+    { icon: '🐍', name: 'Python', desc: 'Core AI & Backend Dev' },
+    { icon: '🚀', name: 'FastAPI', desc: 'Production REST APIs' },
+    { icon: '🛢️', name: 'PostgreSQL', desc: 'Relational Data & SQL' },
+    { icon: '🐳', name: 'Docker', desc: 'Containerized Deployment' },
+    { icon: '🌐', name: 'Nginx', desc: 'Reverse Proxy & Deployment' },
+    { icon: '📈', name: 'Pydantic Logfire', desc: 'Observability & Monitoring' },
+    { icon: '⚛️', name: 'Next.js / React', desc: 'Full-Stack Web Apps' },
+    { icon: '🔐', name: 'OAuth 2.0', desc: 'Secure Auth & Integrations' },
+    { icon: '🔮', name: 'Scikit-learn', desc: 'ML Algorithms & Pipelines' },
+    { icon: '🧬', name: 'TensorFlow', desc: 'Deep Learning Models' },
+  ];
+
+  const experienceData = [
+    { role: 'AI Engineer', company: 'Vidushi Infotech', date: 'Nov 2025 – Present',
+      desc: 'Building production agentic AI systems, real-time voice automation, and LLM-powered workflows. Architected AI agents using MCP as the core integration layer, shipped real-time voice AI agents with LiveKit powering an automated lead-response system, and engineered LLM-powered automation spanning e-commerce, sales, and internal knowledge support.' },
+    { role: 'Data Analyst → AI Engineer', company: 'Infosys (Client Project)', date: 'Apr 2022 – Nov 2025',
+      desc: 'Progressed from Data Analyst Intern to full-time AI Engineer, working on Infosys client AI initiatives. Developed AI agent for logistics reporting integrating LLMs, RAG, and dashboards achieving 70% faster reporting.' },
+    { role: 'Research Assistant', company: 'Northside Partnership (Ireland)', date: 'Oct 2020 – Nov 2021',
+      desc: 'Analyzed datasets, created dashboards, and reported program KPIs for social initiatives.' },
+    { role: 'Volunteer Data Analyst', company: 'Ostomy Association of Ireland', date: 'Apr 2019 – Sep 2020',
+      desc: 'Performed patient data analysis and assisted in healthcare seminar reporting.' },
+  ];
+
+  function placeholderImg(line1, line2){
+    return "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='400' height='300' fill='rgb(6,7,11)'/><rect x='4' y='4' width='392' height='292' fill='none' stroke='rgb(99,102,241)' stroke-width='2'/><text x='200' y='150' font-family='monospace' font-size='20' fill='rgb(34,211,238)' text-anchor='middle'>" + line1 + "</text><text x='200' y='180' font-family='monospace' font-size='20' fill='rgb(34,211,238)' text-anchor='middle'>" + line2 + "</text></svg>";
+  }
+
+  const projectsData = [
+    { tag: 'production', img: placeholderImg('REAL-TIME','VOICE AI'), title: 'Real-Time AI Voice Calling Platform (Multi-Tenant SaaS)',
+      desc: 'Production platform where an AI agent places and answers real phone calls in real time, holds a natural spoken conversation, and books the appointment directly onto the calendar.',
+      link: 'https://github.com/AkshayBhujbal1995/Production-AI-Case-Studies/blob/main/real-time-voice-calling-platform.md', linkLabel: 'Read Write-Up' },
+    { tag: 'production', img: placeholderImg('AGENTIC AI','PLATFORM'), title: 'No-Code Agentic AI Automation Platform',
+      desc: 'Platform that lets non-technical staff build and run their own AI agents through a visual workflow builder and chat, with a human-confirmation safety gate on every write action.',
+      link: 'https://github.com/AkshayBhujbal1995/Production-AI-Case-Studies/blob/main/agentic-ai-automation-platform.md', linkLabel: 'Read Write-Up' },
+    { tag: 'production', img: placeholderImg('CART','RECOVERY AI'), title: 'AI-Powered E-Commerce Cart Recovery Platform (Shopify + WooCommerce)',
+      desc: 'Multi-tenant SaaS product that recovers abandoned online checkouts automatically via an AI voice agent plus SMS/WhatsApp/email outreach.',
+      link: 'https://github.com/AkshayBhujbal1995/Production-AI-Case-Studies/blob/main/ecommerce-cart-recovery-platform.md', linkLabel: 'Read Write-Up' },
+    { tag: 'learning', img: 'I1.png', title: 'AI-Driven HR Onboarding Agent',
+      desc: 'Agentic AI system automating HR workflows using MCP server–client architecture and Claude Desktop.',
+      link: 'https://github.com/AkshayBhujbal1995/AI-Portfolio/tree/main/Showcase-Projects/AI-Driven-HR-Onboarding-Agent', linkLabel: 'View Code' },
+    { tag: 'learning', img: 'I2.png', title: 'AI Business Research Copilot (RAG System)',
+      desc: 'RAG-powered local LLM copilot that scrapes, processes, and answers queries with contextual accuracy.',
+      link: 'https://github.com/AkshayBhujbal1995/AI-Portfolio/tree/main/Showcase-Projects/AI-Business-Research-Copilot', linkLabel: 'View Code' },
+    { tag: 'learning', img: 'I3.png', title: 'Fruit Freshness Classification',
+      desc: 'CNN-based deep learning project for fruit quality inspection using image recognition.',
+      link: 'https://github.com/AkshayBhujbal1995/AI-Portfolio/tree/main/Showcase-Projects/Fruit-Freshness-Classification', linkLabel: 'View Code' },
+    { tag: 'learning', img: 'I4.png', title: 'Retail Sales Forecasting',
+      desc: 'Hybrid ML + LSTM model predicting weekly retail sales with interactive charts.',
+      link: 'https://github.com/AkshayBhujbal1995/AI-Portfolio/tree/main/Showcase-Projects/Retail-Sales-Forecasting', linkLabel: 'View Code' },
+    { tag: 'learning', img: 'I5.png', title: 'Customer Churn Prediction',
+      desc: 'Predictive analytics model forecasting customer attrition with interactive visualization.',
+      link: 'https://github.com/AkshayBhujbal1995/AI-Portfolio/tree/main/Showcase-Projects/Customer-Churn-Prediction', linkLabel: 'View Code' },
+    { tag: 'learning', img: 'I6.png', title: 'Credit Card Fraud Detection',
+      desc: 'ML model and Streamlit app detecting fraudulent transactions using Random Forest.',
+      link: 'https://github.com/AkshayBhujbal1995/AI-Portfolio/tree/main/Showcase-Projects/Credit-Card-Fraud-Detection', linkLabel: 'View Code' },
+    { tag: 'learning', img: 'I7.png', title: 'Express Wash - Smart Laundry App',
+      desc: 'Real-time multi-interface laundry management system with AI-assisted tracking and billing.',
+      link: 'https://github.com/AkshayBhujbal1995/ExpressWash-Desktop-Version-Online-System', linkLabel: 'View Code' },
+  ];
+
+  const demoTabs = [
+    { id: 'voice', label: '🎙️ Voice AI', title: 'Real-Time Voice Calling — Simulated Call', lines: [
+      { speaker: 'System', text: 'Incoming lead detected — Meta Lead Ads' },
+      { speaker: 'Agent', text: '"Hi, this is Aria calling on behalf of the business. I see you were interested in our services — do you have a moment?"' },
+      { speaker: 'Caller', text: '"Yes, sure, go ahead."' },
+      { speaker: 'Agent', text: '"I can get you booked in for a free consultation. Does Thursday at 3 PM work?"' },
+      { speaker: 'Caller', text: '"Thursday at 3 works for me."' },
+      { speaker: 'System', text: '✅ Appointment booked to calendar · Call duration 42s' },
+    ]},
+    { id: 'agentic', label: '🧠 Agentic Automation', title: 'Agentic Workflow — Simulated Trace', lines: [
+      { speaker: 'System', text: 'Trigger: new candidate sourcing request received' },
+      { speaker: 'Agent', text: 'Reasoning: search LinkedIn + GitHub for matching profiles' },
+      { speaker: 'System', text: '🔧 Tool call: search_candidates(role="Backend Engineer")' },
+      { speaker: 'Agent', text: 'Found 6 candidates — drafting outreach and saving to tracker' },
+      { speaker: 'System', text: '⏸ Waiting for human confirmation to send outreach emails' },
+      { speaker: 'System', text: '✅ Human approved — 6 emails sent, tracker updated' },
+    ]},
+    { id: 'cart', label: '🛒 Cart Recovery', title: 'Cart Recovery — Simulated Outreach', lines: [
+      { speaker: 'System', text: 'Webhook received: checkout abandoned on Shopify store' },
+      { speaker: 'Agent', text: '"Hi! Noticed you left some items in your cart 🛒 Need any help before you check out?"' },
+      { speaker: 'Caller', text: '"Is this still in stock in size M?"' },
+      { speaker: 'Agent', text: '"Yes, size M is in stock — here is 10% off to complete your order: SAVE10"' },
+      { speaker: 'System', text: '✅ Checkout completed · Order recovered' },
+    ]},
+  ];
+
+  // ---------- RENDER: SKILLS ----------
+  const skillsGrid = document.getElementById('skills-grid');
+  skillsData.forEach(s => {
+    skillsGrid.innerHTML += `<div class="glass glass-hover rounded-xl p-5 text-center reveal-card">
+      <div class="text-3xl mb-2">${s.icon}</div>
+      <h3 class="font-display text-sm font-bold text-white">${s.name}</h3>
+      <p class="text-xs mt-1">${s.desc}</p>
+    </div>`;
+  });
+
+  // ---------- RENDER: EXPERIENCE ----------
+  const timeline = document.getElementById('experience-timeline');
+  experienceData.forEach(job => {
+    timeline.innerHTML += `<div class="timeline-item pb-2">
+      <span class="timeline-dot"></span>
+      <h3 class="font-display text-lg font-bold text-white">${job.role} <span class="text-slate-400 font-normal">at</span> <span class="gradient-text">${job.company}</span></h3>
+      <p class="mono text-accent text-xs mt-1">${job.date}</p>
+      <p class="mt-2 text-sm">${job.desc}</p>
+    </div>`;
+  });
+
+  // ---------- RENDER: PROJECTS ----------
+  const projectsGrid = document.getElementById('projects-grid');
+  projectsData.forEach(p => {
+    const badge = p.tag === 'production' ? '<span class="badge badge-production">Production</span>' : '<span class="badge badge-learning">Learning</span>';
+    projectsGrid.innerHTML += `<div class="glass glass-hover rounded-2xl overflow-hidden flex flex-col reveal-card">
+      <div class="h-40 bg-black/30"><img src="${p.img}" alt="${p.title}" class="w-full h-full object-cover"></div>
+      <div class="p-5 flex flex-col flex-grow">
+        <div class="mb-2">${badge}</div>
+        <h3 class="font-display text-base font-bold text-white">${p.title}</h3>
+        <p class="mt-2 text-sm flex-grow">${p.desc}</p>
+        <a href="${p.link}" target="_blank" rel="noopener noreferrer" class="btn btn-outline text-xs mt-4 text-center">${p.linkLabel}</a>
+      </div>
+    </div>`;
+  });
+
+  // ---------- ROLE ROTATOR ----------
+  const roles = ['AI Engineer', 'Agentic AI Builder', 'Real-Time Voice Systems', 'LLM Systems Engineer'];
+  let roleIdx = 0;
+  const roleEl = document.getElementById('role-rotator');
+  function cycleRole(){
+    gsap.timeline({ onComplete: cycleRole })
+      .to(roleEl, { opacity: 0, y: -10, duration: 0.3, ease: 'power2.in', overwrite: true })
+      .call(() => { roleIdx = (roleIdx + 1) % roles.length; roleEl.textContent = roles[roleIdx]; })
+      .fromTo(roleEl, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' })
+      .to({}, { duration: 2.2 });
+  }
+  cycleRole();
+
+  // ---------- MOBILE MENU ----------
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+  let menuOpen = false;
+  function setMenu(open){
+    menuOpen = open;
+    mobileMenu.style.maxHeight = open ? mobileMenu.scrollHeight + 'px' : '0px';
+    mobileMenu.style.opacity = open ? '1' : '0';
+    iconOpen.classList.toggle('hidden', open);
+    iconClose.classList.toggle('hidden', !open);
+  }
+  menuToggle.addEventListener('click', () => setMenu(!menuOpen));
+  document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => setMenu(false)));
+
+  // ---------- AI DEMO TABS ----------
+  const tabButtonsEl = document.getElementById('tab-buttons');
+  const demoTitleEl = document.getElementById('demo-title');
+  const demoPanelEl = document.getElementById('demo-panel');
+  const simulateBtn = document.getElementById('simulate-btn');
+  let activeTab = demoTabs[0];
+
+  function renderTabs(){
+    tabButtonsEl.innerHTML = '';
+    demoTabs.forEach(tab => {
+      const btn = document.createElement('button');
+      btn.className = 'tab-btn rounded-full px-5 py-2 text-sm font-medium' + (tab.id === activeTab.id ? ' active' : '');
+      btn.textContent = tab.label;
+      btn.addEventListener('click', () => { activeTab = tab; renderTabs(); resetPanel(); });
+      tabButtonsEl.appendChild(btn);
+    });
+  }
+
+  function resetPanel(){
+    demoTitleEl.textContent = activeTab.title;
+    demoPanelEl.innerHTML = '<p class="text-sm text-slate-500">Click "Simulate" to play this walkthrough.</p>';
+  }
+
+  function playDemo(){
+    demoPanelEl.innerHTML = '';
+    activeTab.lines.forEach((line, i) => {
+      setTimeout(() => {
+        const bubbleClass = line.speaker === 'Agent' ? 'bubble-agent' : (line.speaker === 'Caller' ? 'bubble-caller' : 'bubble-system');
+        const wrap = document.createElement('div');
+        wrap.className = 'chat-line max-w-[85%] rounded-xl px-4 py-3 text-sm ' + bubbleClass;
+        if (line.speaker !== 'System') {
+          wrap.innerHTML = `<span class="mono text-[10px] uppercase tracking-widest text-slate-400 block mb-1">${line.speaker}</span>${line.text}`;
+        } else {
+          wrap.textContent = line.text;
+        }
+        demoPanelEl.appendChild(wrap);
+        demoPanelEl.scrollTop = demoPanelEl.scrollHeight;
+      }, i * 750);
+    });
+  }
+
+  simulateBtn.addEventListener('click', playDemo);
+  renderTabs();
+  resetPanel();
+
+  // ---------- GSAP SCROLL REVEALS ----------
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.utils.toArray('.reveal').forEach(section => {
+    gsap.from(section, {
+      scrollTrigger: { trigger: section, start: 'top 82%' },
+      opacity: 0, y: 40, duration: 0.9, ease: 'power3.out'
+    });
+  });
+  gsap.utils.toArray('.reveal-card').forEach((card, i) => {
+    gsap.from(card, {
+      scrollTrigger: { trigger: card, start: 'top 90%' },
+      opacity: 0, y: 24, duration: 0.6, delay: (i % 4) * 0.08, ease: 'power2.out'
+    });
+  });
+  gsap.from('#home h1, #home h2, #home p, #home .flex', {
+    opacity: 0, y: 24, duration: 0.9, stagger: 0.12, ease: 'power3.out'
+  });
+
+});
+</script>
+</body>
+</html>
